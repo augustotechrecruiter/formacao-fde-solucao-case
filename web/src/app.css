@@ -104,3 +104,17 @@ table [class*="StatusBadge-module__label"] {
 
 /* #209 A linha da grid abre a nota: o foco do teclado aparece na linha toda, com o mesmo realce do passar o mouse. */
 .pagar-row-table tbody tr:focus-visible { outline: 2px solid var(--stroke-brand); outline-offset: -2px; background: var(--bg-secondary); }
+
+/* #222 A grid não alarga a página: a tabela tem a largura do seu conteúdo e rola dentro da própria caixa, com a NF, o valor e o selo ao alcance do dedo. */
+.pagar-row-table { max-width: 100%; min-width: 0; overflow-x: auto; }
+.pagar-body > *, .shell-home > * { min-width: 0; }
+/* #222 A NF fica à esquerda enquanto o resto da linha rola, para a pessoa nunca perder de qual nota está falando. */
+.pagar-row-table tbody td:first-child, .pagar-row-table thead th:first-child { position: sticky; inset-inline-start: 0; z-index: 1; background: var(--bg-primary); }
+.pagar-row-table tbody tr:hover td:first-child, .pagar-row-table tbody tr:focus-visible td:first-child { background: var(--bg-secondary); }
+
+/* #222 A faixa de automação: abaixo de 600 px o botão "Ver rodadas" desce para baixo do texto. */
+@media (max-width: 600px) {
+  .pagar-automation-band { padding: 0 var(--spacing-lg); }
+  .pagar-automation-band [class*="Alert-module__alert"] { flex-wrap: wrap; }
+  .pagar-automation-band [class*="Alert-module__actions"] { flex-basis: 100%; }
+}
